@@ -19,7 +19,7 @@ function authorize($condition, $status = Response::Forbidden)
     }
 }
 function base_path($path){
-    return BASE_PATH . $path;
+     return BASE_PATH . $path;
 }
 function view ($path , $attributes  = []) {
     extract($attributes);
