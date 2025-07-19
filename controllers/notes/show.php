@@ -9,6 +9,6 @@ $id = $_GET['id'] ?? null;
 //  echo $id;
 $note = $db->query("SELECT * FROM notes where  id = :id", ['id' => $id])->findOrFail();
 authorize($note['userId'] == $CurrentUserId);
-require "Views/note.view.php";
+require "Views/notes/show.view.php";
 //  print_r($note);
 // var_dump($note);
