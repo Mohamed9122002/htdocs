@@ -1,5 +1,5 @@
 <?php
-require "Database.php";
+// require "Database.php";
 $config = require "config.php";
 $db = new Database($config);
  // Assuming you want to display the database name

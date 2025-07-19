@@ -1,8 +1,10 @@
 <?php
 require "Core/Functions.php";
-require "route.php";
 /// connect to our mysql database
-// require "Database.php";
+require "Database.php";
+require "Response.php";
+require "route.php";
+
 // $config = require "config.php";
 // $db = new Database($config);
 // $id = $_GET["id?"] ?? null;
