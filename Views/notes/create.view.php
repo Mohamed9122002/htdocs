@@ -1,6 +1,7 @@
-<?php require(__DIR__.'/../partials/head.php') ?>
-<?php require(__DIR__.'/../partials/nav.php') ?>
-<?php require(__DIR__.'/../partials/banner.php') ?>
+<?php require base_path('Views//partials/head.php')?>
+<?php require base_path('Views//partials/nav.php')?>
+<?php require base_path('Views//partials/banner.php')?>
+
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -34,4 +35,4 @@
         </div>
     </div>
 </main>
-<?php require(__DIR__.'/../partials/footer.php') ?>
+<?php require base_path('Views//partials/footer.php')?>

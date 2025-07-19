@@ -1,8 +1,14 @@
 <?php
 // require "Database.php";
-$config = require "config.php";
+$config = require base_path('config.php');
 $db = new Database($config);
  // Assuming you want to display the database name
- $heading  = "Notes";
+//  $heading  = "Notes";
  $notes = $db->query("SELECT * FROM notes" , [])->fetchAll();
- require "Views/notes/index.view.php";
+//   require base_path('Views/notes/index.view.php');
+
+  view('notes/index.view.php',[
+    'heading'=> 'Notes',
+    'notes'=> $notes
+  ]);
+
