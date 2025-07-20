@@ -7,20 +7,11 @@ $db = new Database($config);
 $CurrentUserId = 1;
 $id = $_GET['id'] ?? null;
 //  echo $id;
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $db->query("DELETE FROM notes WHERE id = :id", ['id' => $id]);
-    header('Location: /notes');
-    exit;
-} else {
-
     $note = $db->query("SELECT * FROM notes where  id = :id", ['id' => $id])->findOrFail();
     authorize($note['userId'] == $CurrentUserId);
     //  require base_path('Views/notes/show.view.php');
+    authorize($note['userId'] == $CurrentUserId);
     view('notes/show.view.php', [
         'heading' => 'Note',
         'note' => $note
     ]);
-}
-
-//  print_r($note);
-// var_dump($note);
