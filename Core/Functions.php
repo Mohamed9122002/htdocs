@@ -36,18 +36,23 @@ function view($path, $attributes = [])
     extract($attributes);
     require base_path('Views/' . $path);
 }
-function login($user)
-{
-    $_SESSION['user'] = [
-        'email' => $user['email'],
-    ];
+// function login($user)
+// {
+//     $_SESSION['user'] = [
+//         'email' => $user['email'],
+//     ];
 
-}
-function logout()
-{
-    $_SESSION = [];
-    session_destroy();
-    $params = session_get_cookie_params();
+// }
+// function logout()
+// {
+//     $_SESSION = [];
+//     session_destroy();
+//     $params = session_get_cookie_params();
 
-    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+//     setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+// }
+function redirect($path)
+{
+    header("location: {$path}");
+    exit();
 }
