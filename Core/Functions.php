@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Core\Response;
 function dd($value)
 {
@@ -23,14 +23,31 @@ function abort($code = 404)
 }
 function authorize($condition, $status = Response::Forbidden)
 {
-    if (! $condition) {
+    if (!$condition) {
         abort($status);
     }
 }
-function base_path($path){
-     return BASE_PATH . $path;
+function base_path($path)
+{
+    return BASE_PATH . $path;
 }
-function view ($path , $attributes  = []) {
+function view($path, $attributes = [])
+{
     extract($attributes);
-    require base_path('Views/'. $path);
+    require base_path('Views/' . $path);
+}
+function login($user)
+{
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+    ];
+
+}
+function logout()
+{
+    $_SESSION = [];
+    session_destroy();
+    $params = session_get_cookie_params();
+
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 }

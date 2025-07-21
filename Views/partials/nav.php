@@ -35,9 +35,10 @@
                     </button>
 
                     <!-- Profile dropdown -->
-                    <div class="relative ml-3">
 
-                        <?php if ($_SESSION['user'] ?? false): ?>
+                    <?php if ($_SESSION['user'] ?? false): ?>
+                        <div class="relative ml-3">
+
                             <button id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true"
                                 class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800">
                                 <span class="absolute -inset-1.5"></span>
@@ -46,16 +47,24 @@
                                     alt="" class="size-8 rounded-full" />
 
                             </button>
-                        <?php else: ?>
-                            <div class="ml-3">
-                                <a href="/register"
-                                    class="<?= urlIs('/register') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
-                                <a href="/login"
-                                    class="<?= urlIs('/login') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log
-                                    In</a>
-                            </div>
-                        <?php endif ?>
-                    </div>
+                        </div>
+                        <div class="ml-3">
+                            <form method="POST" action="/session">
+                                <input type="hidden" name="_method" value="DELETE" />
+
+                                <button class="text-white">Log Out</button>
+                            </form>
+                        </div>
+                    <?php else: ?>
+                        <div class="ml-3">
+                            <a href="/register"
+                                class="<?= urlIs('/register') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
+                            <a href="/login"
+                                class="<?= urlIs('/login') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log
+                                In</a>
+                        </div>
+                    <?php endif ?>
+
                 </div>
             </div>
             <div class="-mr-2 flex md:hidden">
