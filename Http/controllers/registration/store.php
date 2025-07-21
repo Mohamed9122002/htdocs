@@ -1,8 +1,7 @@
 <?php
 use Core\App;
 use Core\Authenticator;
-use Core\Database;
-use Core\Validator;
+use Http\Forms\LoginForm;
 // require "Database.php";
 // $config = require base_path("config.php");
 // $db = new Database($config);
@@ -10,19 +9,10 @@ $db = App::getContainer()->resolve('Core\Database');
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-$validator = new Validator();
-$errors = [];
-if (!$validator->email($email)) {
-    $errors['email'] = 'Please provide a valid email address.';
-}
-
-if (!$validator->string($password, 7, 255)) {
-    $errors['password'] = 'Please provide a password of at least seven characters.';
-}
-
-if (!empty($errors)) {
-    return view('registration/create.view.php', [
-        'errors' => $errors
+$form = new LoginForm();
+if (!$form->validate($email, $password)) {
+    return view('sessions/create.view.php', [
+        'errors' => $form->errors
     ]);
 }
 $user = $db->query("SELECT * FROM userRegister WHERE email = :email", [
@@ -37,7 +27,7 @@ if ($user) {
         "password" => password_hash($password, PASSWORD_BCRYPT)
     ]);
     /// Mak that user has logged in
-    $_SESSION['user'] =[
+    $_SESSION['user'] = [
         'email' => $email,
     ];
     header('location:/');
